@@ -2,12 +2,28 @@
 
 **AI-powered sustainability platform that helps employees quantify commute emissions, generate data-backed hybrid work proposals, and reduce carbon footprints through measurable workplace behavior change.**
 
+[![Vite](https://img.shields.io/badge/Vite-v8.0-646CFF?logo=vite)](https://vite.dev)
+[![React](https://img.shields.io/badge/React-v19.0-61DAFB?logo=react)](https://react.dev)
+[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-v4.0-06B6D4?logo=tailwind-css)](https://tailwindcss.com)
+[![Recharts](https://img.shields.io/badge/Recharts-v3.8-22C55E?logo=recharts)](https://recharts.org)
+[![Deployed on Vercel](https://img.shields.io/badge/Vercel-Deployed-000000?logo=vercel)](https://vercel.com)
+[![Groq AI](https://img.shields.io/badge/Groq%20AI-Llama%203.3-orange?logo=groq)](https://console.groq.com)
+
 ---
 
 ## 🏆 Chosen Vertical
 **Workplace Sustainability & AI-Driven Corporate ESG Enablement (Future of Work × Climate Tech)**
 
 NegotiAte bridges the gap between individual carbon reduction efforts and corporate remote-work policies. By empowering employees to translate their daily commute burden into structured corporate ESG (Scope 3 carbon offsets) metrics, it provides concrete data-backed negotiation leverage for hybrid work schedules.
+
+---
+
+## 🔗 Live Deployments
+
+- **Live URL**: *(Replace this with your deployed Vercel URL, e.g., https://negoti-ate.vercel.app)*
+- **GitHub Repository**: [https://github.com/134shubhamyadav/NegotiAte](https://github.com/134shubhamyadav/NegotiAte)
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2F134shubhamyadav%2FNegotiAte&env=VITE_GROQ_API_KEY)
 
 ---
 
@@ -109,7 +125,7 @@ NegotiAte operates as an interactive, highly visual 4-step wizard:
 ### Local Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/NegotiAte.git
+   git clone https://github.com/134shubhamyadav/NegotiAte.git
    cd NegotiAte
    ```
 2. Install dependencies:
@@ -135,7 +151,7 @@ NegotiAte operates as an interactive, highly visual 4-step wizard:
 
 ## ☁️ Vercel Deployment Instructions
 
-NegotiAte is fully prepared for Vercel deployment:
+NegotiAte is fully optimized for Vercel deployment:
 
 1. Push your code repository to GitHub (ensuring `.env` is omitted and ignored).
 2. Import the project into the [Vercel Dashboard](https://vercel.com).
