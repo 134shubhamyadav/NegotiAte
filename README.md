@@ -20,7 +20,7 @@ NegotiAte bridges the gap between individual carbon reduction efforts and corpor
 
 ## 🔗 Live Deployments
 
-- **Live URL**: *(Replace this with your deployed Vercel URL, e.g., https://negoti-ate.vercel.app)*
+- **Live URL**: [https://negotiate-app-seven.vercel.app](https://negotiate-app-seven.vercel.app)
 - **GitHub Repository**: [https://github.com/134shubhamyadav/NegotiAte](https://github.com/134shubhamyadav/NegotiAte)
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2F134shubhamyadav%2FNegotiAte&env=VITE_GROQ_API_KEY)
