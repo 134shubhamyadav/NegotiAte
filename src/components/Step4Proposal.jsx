@@ -214,10 +214,13 @@ export default function Step4Proposal({ proposal, savings, commuteForm, profileF
         {/* Right Column: Objections, Talking points, etc. tabs */}
         <div className="md:col-span-5 space-y-4">
           {/* Tabs header */}
-          <div className="flex gap-1 bg-slate-100 rounded-2xl p-1 flex-wrap">
+          <div role="tablist" aria-label="Proposal options" className="flex gap-1 bg-slate-100 rounded-2xl p-1 flex-wrap">
             {tabs.map((t) => (
               <button
                 key={t.id}
+                role="tab"
+                aria-selected={tab === t.id}
+                aria-controls={`tabpanel-${t.id}`}
                 onClick={() => setTab(t.id)}
                 className={`flex-1 min-w-fit py-1.5 px-2 rounded-xl text-xs font-semibold transition-all cursor-pointer border-0 ${
                   tab === t.id ? "bg-white text-slate-900 shadow-sm" : "text-slate-500 hover:text-slate-700 bg-transparent"
@@ -231,7 +234,7 @@ export default function Step4Proposal({ proposal, savings, commuteForm, profileF
           {/* Tab Content */}
           <div className="min-h-[160px]">
             {tab === "talking" && (
-              <div className="bg-white rounded-3xl border border-slate-100 p-4 sm:p-6 shadow-sm animate-fade-in">
+              <div id="tabpanel-talking" role="tabpanel" className="bg-white rounded-3xl border border-slate-100 p-4 sm:p-6 shadow-sm animate-fade-in">
                 <p className="text-xs font-bold text-slate-800 mb-3">Key Talking Points (use in person)</p>
                 {proposal.talkingPoints.length > 0 ? (
                   <div className="space-y-2">
@@ -251,7 +254,7 @@ export default function Step4Proposal({ proposal, savings, commuteForm, profileF
             )}
 
             {tab === "objections" && (
-              <div className="bg-white rounded-3xl border border-slate-100 p-4 sm:p-6 shadow-sm animate-fade-in">
+              <div id="tabpanel-objections" role="tabpanel" className="bg-white rounded-3xl border border-slate-100 p-4 sm:p-6 shadow-sm animate-fade-in">
                 <p className="text-xs font-bold text-slate-800 mb-3">Objection Handling</p>
                 {proposal.objections.length > 0 ? (
                   <div className="space-y-2 max-h-[220px] overflow-y-auto pr-1">
@@ -271,7 +274,7 @@ export default function Step4Proposal({ proposal, savings, commuteForm, profileF
             )}
 
             {tab === "impact" && (
-              <div className="animate-fade-in space-y-4">
+              <div id="tabpanel-impact" role="tabpanel" className="animate-fade-in space-y-4">
                 <div className="relative overflow-hidden bg-gradient-to-br from-emerald-950 via-slate-900 to-teal-950 border border-emerald-500/20 text-white rounded-3xl p-5 sm:p-6 shadow-xl aspect-[5/7] max-w-[280px] mx-auto flex flex-col justify-between group hover:shadow-emerald-500/5 transition-all duration-300">
                   {/* Glow effects */}
                   <div className="absolute -top-12 -left-12 w-32 h-32 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
@@ -339,7 +342,7 @@ export default function Step4Proposal({ proposal, savings, commuteForm, profileF
             )}
 
             {tab === "timeline" && (
-              <div className="bg-white rounded-3xl border border-slate-100 p-4 sm:p-6 shadow-sm animate-fade-in space-y-4">
+              <div id="tabpanel-timeline" role="tabpanel" className="bg-white rounded-3xl border border-slate-100 p-4 sm:p-6 shadow-sm animate-fade-in space-y-4">
                 <div className="mb-1">
                   <p className="text-xs font-bold text-slate-800">Structured WFH Trial Timeline</p>
                   <p className="text-[10px] text-slate-400">Step-by-step checklist to assure managers of output safety.</p>
@@ -392,6 +395,9 @@ export default function Step4Proposal({ proposal, savings, commuteForm, profileF
               ].map((item, i) => (
                 <button
                   key={i}
+                  type="button"
+                  role="checkbox"
+                  aria-checked={checklist[i]}
                   onClick={() => toggleCheck(i)}
                   className={`w-full flex items-center gap-2.5 p-2.5 rounded-xl border text-left transition-all duration-200 cursor-pointer group ${
                     checklist[i]

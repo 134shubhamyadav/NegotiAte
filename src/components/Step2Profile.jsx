@@ -34,35 +34,35 @@ export default function Step2({ form, setForm, savings, onBack, onNext, loading,
         <div className="bg-white rounded-3xl border border-slate-100 p-4 sm:p-6 space-y-4 shadow-sm">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <Label>Your full name</Label>
-              <Input placeholder="Priya Sharma" value={form.name} onChange={e => setForm(p => ({ ...p, name: e.target.value }))} />
+              <Label htmlFor="full-name-input">Your full name</Label>
+              <Input id="full-name-input" placeholder="Priya Sharma" value={form.name} onChange={e => setForm(p => ({ ...p, name: e.target.value }))} />
             </div>
             <div>
-              <Label>Job title / role</Label>
-              <Input placeholder="Senior Engineer" value={form.role} onChange={e => setForm(p => ({ ...p, role: e.target.value }))} />
+              <Label htmlFor="role-input">Job title / role</Label>
+              <Input id="role-input" placeholder="Senior Engineer" value={form.role} onChange={e => setForm(p => ({ ...p, role: e.target.value }))} />
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <Label>Company name</Label>
-              <Input placeholder="Acme Corp" value={form.company} onChange={e => setForm(p => ({ ...p, company: e.target.value }))} />
+              <Label htmlFor="company-input">Company name</Label>
+              <Input id="company-input" placeholder="Acme Corp" value={form.company} onChange={e => setForm(p => ({ ...p, company: e.target.value }))} />
             </div>
             <div>
-              <Label>Manager's name (optional)</Label>
-              <Input placeholder="Rahul Gupta" value={form.managerName} onChange={e => setForm(p => ({ ...p, managerName: e.target.value }))} />
+              <Label htmlFor="manager-name-input">Manager's name (optional)</Label>
+              <Input id="manager-name-input" placeholder="Rahul Gupta" value={form.managerName} onChange={e => setForm(p => ({ ...p, managerName: e.target.value }))} />
             </div>
           </div>
           <div>
-            <Label>Industry</Label>
-            <SelectEl value={form.industry} onChange={e => setForm(p => ({ ...p, industry: e.target.value }))}>
+            <Label htmlFor="industry-select">Industry</Label>
+            <SelectEl id="industry-select" value={form.industry} onChange={e => setForm(p => ({ ...p, industry: e.target.value }))}>
               {INDUSTRY_OPTIONS.map(o => <option key={o} value={o}>{o}</option>)}
             </SelectEl>
           </div>
 
           {/* Proposal Tone Selector */}
           <div>
-            <Label>Proposal Tone</Label>
-            <div className="grid grid-cols-3 gap-2">
+            <Label id="tone-group-label">Proposal Tone</Label>
+            <div role="radiogroup" aria-labelledby="tone-group-label" className="grid grid-cols-3 gap-2">
               {[
                 { id: "corporate", label: "💼 Corporate", desc: "Scope 3 carbon metrics and structured trial blocks." },
                 { id: "collaborative", label: "🤝 Collaborative", desc: "Warm, trust-first team velocity & alignment." },
@@ -71,6 +71,8 @@ export default function Step2({ form, setForm, savings, onBack, onNext, loading,
                 <button
                   key={t.id}
                   type="button"
+                  role="radio"
+                  aria-checked={form.tone === t.id}
                   onClick={() => setForm(p => ({ ...p, tone: t.id }))}
                   className={`p-3 rounded-2xl border text-left flex flex-col justify-between h-28 transition-all duration-300 relative overflow-hidden group active:scale-95 cursor-pointer
                     ${form.tone === t.id
@@ -88,8 +90,8 @@ export default function Step2({ form, setForm, savings, onBack, onNext, loading,
           </div>
 
           <div>
-            <Label>Extra context for AI (optional)</Label>
-            <Textarea rows={3} placeholder="e.g. I've been here 3 years, our team already does hybrid, the company has a net-zero 2030 pledge..."
+            <Label htmlFor="extra-context-textarea">Extra context for AI (optional)</Label>
+            <Textarea id="extra-context-textarea" rows={3} placeholder="e.g. I've been here 3 years, our team already does hybrid, the company has a net-zero 2030 pledge..."
               value={form.extraContext} onChange={e => setForm(p => ({ ...p, extraContext: e.target.value }))} />
           </div>
         </div>

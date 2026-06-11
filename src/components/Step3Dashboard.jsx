@@ -67,11 +67,12 @@ export default function Step3Dashboard({
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
-                <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
+                <label htmlFor="wfh-days-slider" className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
                   WFH Days Requested
                 </label>
                 <div className="flex items-center gap-2">
                   <input
+                    id="wfh-days-slider"
                     type="range"
                     min="1"
                     max={Math.max(1, Number(commuteForm.officeDaysPerWeek) - 1)}
@@ -87,11 +88,12 @@ export default function Step3Dashboard({
               </div>
 
               <div>
-                <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
+                <label htmlFor="distance-slider" className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
                   Commute Distance (one-way)
                 </label>
                 <div className="flex items-center gap-2">
                   <input
+                    id="distance-slider"
                     type="range"
                     min="1"
                     max="100"
@@ -107,10 +109,11 @@ export default function Step3Dashboard({
               </div>
 
               <div>
-                <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
+                <label htmlFor="mode-select-dash" className="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
                   Transport Mode
                 </label>
                 <select
+                  id="mode-select-dash"
                   value={commuteForm.mode}
                   onChange={(e) => setCommuteForm((p) => ({ ...p, mode: e.target.value }))}
                   className="w-full bg-slate-800 border border-slate-700 text-slate-200 rounded-xl px-2 py-1 text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-emerald-400 focus:border-transparent"

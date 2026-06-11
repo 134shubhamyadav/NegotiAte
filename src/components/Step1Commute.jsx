@@ -103,8 +103,9 @@ export default function Step1({ form, setForm, onNext }) {
             <p className="text-xs text-slate-400">We'll calculate your emissions footprint automatically.</p>
           </div>
           <div>
-            <Label>One-way distance to office (km)</Label>
+            <Label htmlFor="distance-input">One-way distance to office (km)</Label>
             <Input
+              id="distance-input"
               type="number"
               min="0.5"
               max="500"
@@ -115,8 +116,8 @@ export default function Step1({ form, setForm, onNext }) {
             />
           </div>
           <div>
-            <Label>Primary transport mode</Label>
-            <SelectEl value={form.mode} onChange={(e) => setForm((p) => ({ ...p, mode: e.target.value }))}>
+            <Label htmlFor="mode-select">Primary transport mode</Label>
+            <SelectEl id="mode-select" value={form.mode} onChange={(e) => setForm((p) => ({ ...p, mode: e.target.value }))}>
               {Object.entries(MODE_LABELS).map(([k, v]) => (
                 <option key={k} value={k}>
                   {v}
@@ -126,8 +127,9 @@ export default function Step1({ form, setForm, onNext }) {
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <Label>Office days / week</Label>
+              <Label htmlFor="office-days-select">Office days / week</Label>
               <SelectEl
+                id="office-days-select"
                 value={form.officeDaysPerWeek}
                 onChange={(e) => setForm((p) => ({ ...p, officeDaysPerWeek: e.target.value }))}
               >
@@ -140,8 +142,9 @@ export default function Step1({ form, setForm, onNext }) {
               </SelectEl>
             </div>
             <div>
-              <Label>WFH days you want</Label>
+              <Label htmlFor="wfh-days-select">WFH days you want</Label>
               <SelectEl
+                id="wfh-days-select"
                 value={form.wfhDaysRequested}
                 onChange={(e) => setForm((p) => ({ ...p, wfhDaysRequested: e.target.value }))}
               >
@@ -172,8 +175,9 @@ export default function Step1({ form, setForm, onNext }) {
                 {(form.mode === "car_petrol" || form.mode === "car_diesel" || form.mode === "motorcycle") && (
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <Label>Fuel Price (₹/liter)</Label>
+                      <Label htmlFor="fuel-price-input">Fuel Price (₹/liter)</Label>
                       <Input
+                        id="fuel-price-input"
                         type="number"
                         min="1"
                         max="500"
@@ -184,8 +188,9 @@ export default function Step1({ form, setForm, onNext }) {
                       />
                     </div>
                     <div>
-                      <Label>Vehicle Mileage (km/l)</Label>
+                      <Label htmlFor="mileage-input">Vehicle Mileage (km/l)</Label>
                       <Input
+                        id="mileage-input"
                         type="number"
                         min="1"
                         max="150"
@@ -200,8 +205,9 @@ export default function Step1({ form, setForm, onNext }) {
 
                 {form.mode === "car_electric" && (
                   <div>
-                    <Label>EV Charging Cost (₹/km)</Label>
+                    <Label htmlFor="ev-cost-input">EV Charging Cost (₹/km)</Label>
                     <Input
+                      id="ev-cost-input"
                       type="number"
                       min="0.1"
                       max="50"
@@ -215,8 +221,9 @@ export default function Step1({ form, setForm, onNext }) {
 
                 {(form.mode === "bus" || form.mode === "metro" || form.mode === "train" || form.mode === "auto") && (
                   <div>
-                    <Label>Custom Daily Round-Trip Fare (₹)</Label>
+                    <Label htmlFor="transit-fare-input">Custom Daily Round-Trip Fare (₹)</Label>
                     <Input
+                      id="transit-fare-input"
                       type="number"
                       min="1"
                       max="5000"

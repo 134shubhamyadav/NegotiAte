@@ -1,6 +1,6 @@
 
-export const Label = ({ children }) => (
-  <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1.5">
+export const Label = ({ children, htmlFor }) => (
+  <label htmlFor={htmlFor} className="block text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1.5">
     {children}
   </label>
 );
