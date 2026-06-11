@@ -25,10 +25,43 @@ NegotiAte bridges the gap between individual carbon reduction efforts and corpor
 
 ---
 
+## 📂 Project Structure
+
+To help developers and hackathon judges navigate the codebase, here is the organized layout of the refactored workspace:
+
+```text
+negotiate/
+├── public/
+│   └── logo.png              # Public asset (logo served at /logo.png)
+├── src/
+│   ├── components/           # Modular JSX Components
+│   │   ├── Icons.jsx         # Standalone SVG vector icons
+│   │   ├── UI.jsx            # Shared primitives (Buttons, Inputs, Tooltips, ProgressBars)
+│   │   ├── Step1Commute.jsx  # Step 1: Distance & transport inputs, live carbon estimation card
+│   │   ├── Step2Profile.jsx  # Step 2: Employee personalization details and Tone selection
+│   │   ├── Step3Dashboard.jsx# Step 3: Interactive simulations, Recharts graphs, & regional comparisons
+│   │   └── Step4Proposal.jsx # Step 4: AI Proposal output, trial timeline, checklists, & Canvas exporter
+│   ├── utils/                # Logic & Utilities
+│   │   ├── calculations.js   # Carbon math variables and annual projection logic
+│   │   └── groq.js           # Groq API prompts, parser, and offline simulation fallback
+│   ├── App.jsx               # Root App manager coordinating states, routes, and alert banners
+│   ├── index.css             # Styling rules, Outfit font imports, and keyframe animations
+│   └── main.jsx              # React mounting root entrypoint
+├── .env.example              # Environment variables template
+├── .gitignore                # Git exclusions
+├── eslint.config.js          # ESLint settings
+├── index.html                # App entrypoint (points to /src/main.jsx)
+├── package.json              # Script configurations & dependencies
+├── README.md                 # Professional Hackathon guide
+└── vite.config.js            # Vite configs
+```
+
+---
+
 ## 💡 Approach and Logic
 
 ### The Core Premise
-Employee commutes are a significant source of Scope 3 (indirect) greenhouse gas emissions for companies. However, this impact is rarely quantified or utilized in remote/hybrid work discussions. NegotiAte converts commute metrics (distance, transport mode, fuel consumption) into tangible carbon savings, hours reclaimed, and financial offsets. It then constructs a professional, high-impact proposal that frames hybrid work not as a personal convenience, but as a strategic operational and sustainability win for the company.
+Employee commutes are a major source of Scope 3 (indirect) greenhouse gas emissions for companies. However, this impact is rarely quantified or utilized in remote/hybrid work discussions. NegotiAte converts commute metrics (distance, transport mode, fuel consumption) into tangible carbon savings, hours reclaimed, and financial offsets. It then constructs a professional, high-impact proposal that frames hybrid work not as a personal convenience, but as a strategic operational and sustainability win for the company.
 
 ### Calculations & Logic Model
 
@@ -139,6 +172,10 @@ NegotiAte operates as an interactive, highly visual 4-step wizard:
      ```env
      VITE_GROQ_API_KEY=gsk_your_actual_api_key
      ```
+   
+   > [!NOTE]
+   > If no `VITE_GROQ_API_KEY` is provided or if the key is empty, the application will run in **Demo Mode**, utilizing high-quality mock templates for proposal simulation so judges can still review all functionalities.
+
 4. Run the development server:
    ```bash
    npm run dev
@@ -161,3 +198,6 @@ NegotiAte is fully optimized for Vercel deployment:
    - Key: `VITE_GROQ_API_KEY`
    - Value: `gsk_your_actual_api_key`
 5. Click **Deploy**.
+
+> [!IMPORTANT]
+> Make sure the environment variable is named exactly `VITE_GROQ_API_KEY` so that Vite can read it at build time.
