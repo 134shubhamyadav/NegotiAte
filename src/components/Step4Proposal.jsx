@@ -18,7 +18,7 @@ export default function Step4Proposal({ proposal, savings, commuteForm, profileF
   const shareText = `I just calculated my commute carbon footprint — ${Math.round(
     savings.savedAnnualKg
   )} kg CO₂e/year could be saved by working from home ${commuteForm.wfhDaysRequested} day(s)/week! 🌱`;
-  const shareUrl = "https://negotiate.app";
+  const shareUrl = "https://negotiate-webapp.vercel.app";
 
   const toggleCheck = (i) => setChecklist((prev) => prev.map((v, idx) => (idx === i ? !v : v)));
 
