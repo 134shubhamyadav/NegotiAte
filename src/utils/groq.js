@@ -1,5 +1,19 @@
-import { MODE_LABELS } from "./calculations.js";
+/**
+ * @fileoverview Groq LLM API integration and prompt engineering utilities
+ * for generating WFH proposal emails in NegotiAte.
+ */
 
+import { MODE_LABELS } from "./constants.js";
+
+/**
+ * Calls the Groq Chat Completions API with the given prompt and returns
+ * the generated text content.
+ *
+ * @param {string} apiKey - The Groq API key (Bearer token).
+ * @param {string} prompt - The user-role prompt to send to the model.
+ * @returns {Promise<string>} The raw text response from the model.
+ * @throws {Error} If the API responds with a non-OK status.
+ */
 export async function callGroq(apiKey, prompt) {
   const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
     method: "POST",
@@ -14,14 +28,39 @@ export async function callGroq(apiKey, prompt) {
       max_tokens: 1500,
     }),
   });
+
   if (!res.ok) {
     const err = await res.json().catch(() => ({}));
     throw new Error(err?.error?.message || `Groq error ${res.status}`);
   }
+
   const data = await res.json();
   return data.choices?.[0]?.message?.content ?? "";
 }
 
+/**
+ * @typedef {Object} PromptInputs
+ * @property {string} name - Employee's full name.
+ * @property {string} role - Employee's job title.
+ * @property {string} industry - Industry sector.
+ * @property {string} company - Company name.
+ * @property {string} [managerName] - Manager's name (optional).
+ * @property {string} [extraContext] - Additional context for personalisation.
+ * @property {number} distanceKm - One-way commute distance in km.
+ * @property {string} mode - Transport mode key.
+ * @property {number} officeDaysPerWeek - Current weekly office days.
+ * @property {number} wfhDaysRequested - Requested WFH days per week.
+ * @property {import('./calculations').SavingsResult} savings - Computed savings metrics.
+ * @property {string} tone - Proposal tone: 'corporate' | 'collaborative' | 'analytical'.
+ */
+
+/**
+ * Builds a structured, tone-aware prompt for the Groq LLM to generate
+ * a professional WFH negotiation email.
+ *
+ * @param {PromptInputs} inputs
+ * @returns {string} The fully constructed prompt string.
+ */
 export function buildPrompt({
   name,
   role,
@@ -102,6 +141,20 @@ OBJECTIONS:
 - [Objection 2]: [response in 1-2 sentences]`;
 }
 
+/**
+ * @typedef {Object} ParsedProposal
+ * @property {string} subject - Email subject line.
+ * @property {string} emailBody - Full email body text.
+ * @property {string[]} talkingPoints - Array of talking point strings.
+ * @property {string[]} objections - Array of objection+response strings.
+ */
+
+/**
+ * Parses a raw LLM response string into structured proposal sections.
+ *
+ * @param {string} raw - The raw text output from the LLM.
+ * @returns {ParsedProposal} The parsed and structured proposal.
+ */
 export function parseProposal(raw) {
   const subjectMatch = raw.match(/Subject:\s*(.+)/i);
   const subject = subjectMatch?.[1]?.trim().replace(/\*\*/g, "") ?? "WFH Proposal";
@@ -115,14 +168,35 @@ export function parseProposal(raw) {
     .trim();
   const tpRaw = tpIdx > -1 ? raw.slice(tpIdx + 15, objIdx > -1 ? objIdx : undefined) : "";
   const objRaw = objIdx > -1 ? raw.slice(objIdx + 11) : "";
+
+  /**
+   * Splits a raw bullet-point section into a clean string array.
+   * @param {string} s
+   * @returns {string[]}
+   */
   const parseList = (s) =>
     s
       .split("\n")
       .map((l) => l.replace(/^[-•*\d.)\s]+/, "").trim())
       .filter(Boolean);
+
   return { subject, emailBody, talkingPoints: parseList(tpRaw), objections: parseList(objRaw) };
 }
 
+/**
+ * Generates a realistic mock proposal for demo / fallback mode.
+ * Mirrors the structure of a real LLM response so the UI renders identically.
+ *
+ * @param {{
+ *   name: string,
+ *   role: string,
+ *   company: string,
+ *   managerName?: string,
+ *   wfhDaysRequested: number,
+ *   savings: import('./calculations').SavingsResult,
+ * }} inputs
+ * @returns {string} A raw mock proposal string in the same format as LLM output.
+ */
 export function getMockProposal({ name, role, company, managerName, wfhDaysRequested, savings }) {
   const manager = managerName || "Team Lead";
   const carbonSaved = Math.round(savings.savedAnnualKg);

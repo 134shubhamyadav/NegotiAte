@@ -2,12 +2,58 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/logo.png" />
+
+    <!-- Viewport & mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NegotiAte — Turn your commute into hybrid leverage</title>
-    <meta name="description" content="Calculate the carbon footprint, cost, and time of your daily commute and generate a persuasive, AI-powered WFH proposal for your manager." />
+
+    <!-- Primary Meta Tags -->
+    <title>NegotiAte — Turn Your Commute Into Hybrid Leverage</title>
+    <meta
+      name="description"
+      content="Calculate the carbon footprint, cost, and time of your daily commute and generate a persuasive, AI-powered WFH proposal for your manager."
+    />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="color-scheme" content="light" />
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="NegotiAte — Turn Your Commute Into Hybrid Leverage" />
+    <meta
+      property="og:description"
+      content="Calculate your commute's carbon footprint and generate an AI-powered WFH negotiation proposal in minutes."
+    />
+    <meta property="og:image" content="/logo.png" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="NegotiAte — AI-Powered WFH Negotiation" />
+    <meta
+      name="twitter:description"
+      content="Turn your daily commute data into a compelling WFH proposal with real carbon savings."
+    />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Performance: preconnect to external origins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://api.groq.com" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://negotiate-webapp.vercel.app/" />
   </head>
   <body>
+    <!-- Skip navigation for accessibility -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:bg-slate-900 focus:text-white focus:px-4 focus:py-2 focus:rounded-xl focus:text-sm focus:font-semibold"
+    >
+      Skip to main content
+    </a>
+
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
